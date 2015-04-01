@@ -142,6 +142,9 @@ class exports.Generator
       # continue  if random 'boolean'
       o[key] = @generate prop, depth + 1
 
+    if schema.customType isnt undefined
+      o.customType = schema.customType
+
     if type(schema.additionalProperties) is 'object'
       # break  if schema.additionalProperties.$ref?[0] is '#'
       randomOptions =
