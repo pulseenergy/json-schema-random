@@ -118,14 +118,10 @@ class exports.Generator
         minimum: minimum
         maximum: maximum
       howManyMoreItems = @random 'integer', randomOptions
-      while howManyMoreItems
-        howManyMoreItemsLeft = howManyMoreItems - o.length
-        if howManyMoreItemsLeft
-          for i in [1..howManyMoreItemsLeft]
-            o.push @generate schema.additionalItems, depth + 1
-          o = _.deepUnique o  if schema.uniqueItems
-        howManyMoreItemsLeft = howManyMoreItems - o.length
-        break  unless howManyMoreItemsLeft
+      while howManyMoreItems > 0
+        o.push @generate schema.additionalItems, depth + 1
+        o = _.deepUnique o  if schema.uniqueItems
+        howManyMoreItems = howManyMoreItems - o.length
     o
 
 
