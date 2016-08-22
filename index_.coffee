@@ -113,7 +113,7 @@ class exports.Generator
       if type(schema.maxItems) isnt 'undefined'
         maximum = schema.maxItems - o.length
       else
-        maximum = o.length + @random 'integer', {minimum: 0, maximum: 2}
+        maximum = o.length + @random 'integer', {minimum: 0, maximum: 10}
       randomOptions =
         minimum: minimum
         maximum: maximum
