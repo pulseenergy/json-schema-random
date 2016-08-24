@@ -88,7 +88,9 @@ class exports.Generator
     randomOptions =
       minLength: schema.minLength
       maxLength: schema.maxLength
-    @random 'string', randomOptions
+    randomString = @random 'string', randomOptions
+    randomString.split(randomString[@random 'integer', {minimum: randomOptions.minLength, maximum: randomOptions.maxLength}]).join(' ')
+    randomString.slice(0, @random 'integer', {minimum: 10, maximum: 50})
 
 
   # type = array
