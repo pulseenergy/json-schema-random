@@ -1,8 +1,6 @@
-random = require 'otw/like/_/random'
-type = require 'otw/like/_/type'
-randexp = do () ->
-  _randexp = require 'randexp'
-  (pattern) -> new _randexp(pattern).gen()
+random = require './lib/otw/random'
+type = require './lib/otw/type'
+randexp = require 'randexp'
 
 
 module.exports = exports = (schema, options = {}) ->
@@ -83,7 +81,7 @@ class exports.Generator
 
   # type = string
   string: (schema, depth = 0) ->
-    return randexp schema.pattern  if schema.pattern
+    return new randexp(schema.pattern).gen()  if schema.pattern
     # FIXME format should not be ignored
     randomOptions =
       minLength: schema.minLength
